@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 10px;
+        }
+    </style>
+</head>
+ 
+<body>
+   
+    <h1>Cadastre-se</h1>
+    <form action="" id="formExemple" target="_blank" novalidate onsubmit="alert('ALELA')" style="width: 500px; text-align: center;">
+        <fieldset style="border-color: rgb(0, 153, 255);">
+            <legend style="text-align: center;"></legend>
+            
+            <label for="idNome">Nome: </label>
+            <input type="text" id="idNome" placeholder="Digite seu nome" required>
+            <!-- readonly serve para permitir que o usuário apenas leia o input e não modifique seu valor-->
+
+            <br>
+            <label for="CPF" > CPF:</label>
+            <input type="text" id="CPF" placeholder="***.***.***-**" >
+
+           <br>
+           <label for="Loca">Estado:</label>
+           <select id="Cidade">
+            <option>Rio Grande do Norte</option>
+            <option>Ceará</option>
+            <option>Bahia</option>
+           </select>
+           <br>
+
+           <label for="Loca">Cidade:</label>
+           <select id="Cidade">
+            <option>Rio Grande do Norte</option>
+            <option>Ceará</option>
+            <option>Bahia</option>
+           </select>
+           <br>
+        
+
+            <label for="idEmail">Email: </label>
+            <input type="email" id="idEmail" placeholder="******@Gmail.com"  maxlength="30" required>
+            <!--disabled serve para disativar o -->
+            <br>
+            <br>
+            <label for="">Geniro:</label>
+            <br>    
+           <input type="radio" id="Masc" name="saas" value="html">
+           <label for="Masc"> Masculino</label>
+           <input type="radio" id="Masc" name="saas" value="html">
+           <label for="Masc"> Feminino</label> 
+           <input type="radio" id="Masc" name="saas" value="html">
+           <label for="Masc"> Não Binario</label>
+
+           <br>
+           <br>
+
+            <label for="idTelefone">Telefone:</label>
+            <input type="text" id="idTelefone" placeholder="(**) * ****-****">
+           
+           <br>
+           <label for="">Data de Nasimento:</label>
+            <input type="date">
+            <input type="submit" value="Enviar">
+           
+        </fieldset>
+    </form>
+   
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script>
+        // document.getElementById("formExemple").addEventListener("submit", (event) => {
+        //     event.preventDefault();
+        //     console.log("ERIK")
+        // })
+       
+        // Obtém a URL atual
+        const url = window.location.href;
+       
+        // Divide a URL pela barra ("/")
+        const partesDaURL = url.split('/');
+       
+        // Pega o último elemento do array resultante
+        const numero = partesDaURL.pop();
+       
+        console.log(numero); // Isso vai imprimir '2' no console
+       
+       
+        document.getElementById('city').addEventListener('change', function() {
+            // Pegar a lista de arquivos selecionados
+           
+            let arquivo = this.files;
+            console.log(arquivo)
+            console.log(document.getElementById("city").files);
+           
+           
+            // Limitar o número máximo de arquivos permitidos
+            // var maxFiles = 2;
+            // if (files.length > maxFiles) {
+            //     alert('Você só pode selecionar até ' + maxFiles + ' arquivos.');
+            //     this.value = ''; // Limpar a seleção atual dos arquivos
+            // }
+        });
+       
+       
+    </script>
+</body>
+ 
+</html>
