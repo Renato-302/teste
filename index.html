@@ -1,116 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
- 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Jogo de Adivinhação</title>
     <style>
-        * {
-            padding: 0;
-            margin: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            font-size: 1em;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 1em;
         }
     </style>
 </head>
- 
 <body>
-   
-    <h1>Cadastre-se</h1>
-    <form action="" id="formExemple" target="_blank" novalidate onsubmit="alert('ALELA')" style="width: 500px; text-align: center;">
-        <fieldset style="border-color: rgb(0, 153, 255);">
-            <legend style="text-align: center;"></legend>
-            
-            <label for="idNome">Nome: </label>
-            <input type="text" id="idNome" placeholder="Digite seu nome" required>
-            <!-- readonly serve para permitir que o usuário apenas leia o input e não modifique seu valor-->
+    <h1>Jogo de Adivinhação</h1>
+    <p>Escolha um número de 1 a 10:</p>
+    <input type="number" id="chute" min="1" max="10" />
+    <button onclick="adivinhar()">Adivinhar</button>
+    <div id="resultado"></div>
 
-            <br>
-            <label for="CPF" > CPF:</label>
-            <input type="text" id="CPF" placeholder="***.***.***-**" >
-
-           <br>
-           <label for="Loca">Estado:</label>
-           <select id="Cidade">
-            <option>Rio Grande do Norte</option>
-            <option>Ceará</option>
-            <option>Bahia</option>
-           </select>
-           <br>
-
-           <label for="Loca">Cidade:</label>
-           <select id="Cidade">
-            <option>Rio Grande do Norte</option>
-            <option>Ceará</option>
-            <option>Bahia</option>
-           </select>
-           <br>
-        
-
-            <label for="idEmail">Email: </label>
-            <input type="email" id="idEmail" placeholder="******@Gmail.com"  maxlength="30" required>
-            <!--disabled serve para disativar o -->
-            <br>
-            <br>
-            <label for="">Geniro:</label>
-            <br>    
-           <input type="radio" id="Masc" name="saas" value="html">
-           <label for="Masc"> Masculino</label>
-           <input type="radio" id="Masc" name="saas" value="html">
-           <label for="Masc"> Feminino</label> 
-           <input type="radio" id="Masc" name="saas" value="html">
-           <label for="Masc"> Não Binario</label>
-
-           <br>
-           <br>
-
-            <label for="idTelefone">Telefone:</label>
-            <input type="text" id="idTelefone" placeholder="(**) * ****-****">
-           
-           <br>
-           <label for="">Data de Nasimento:</label>
-            <input type="date">
-            <input type="submit" value="Enviar">
-           
-        </fieldset>
-    </form>
-   
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
     <script>
-        // document.getElementById("formExemple").addEventListener("submit", (event) => {
-        //     event.preventDefault();
-        //     console.log("ERIK")
-        // })
-       
-        // Obtém a URL atual
-        const url = window.location.href;
-       
-        // Divide a URL pela barra ("/")
-        const partesDaURL = url.split('/');
-       
-        // Pega o último elemento do array resultante
-        const numero = partesDaURL.pop();
-       
-        console.log(numero); // Isso vai imprimir '2' no console
-       
-       
-        document.getElementById('city').addEventListener('change', function() {
-            // Pegar a lista de arquivos selecionados
-           
-            let arquivo = this.files;
-            console.log(arquivo)
-            console.log(document.getElementById("city").files);
-           
-           
-            // Limitar o número máximo de arquivos permitidos
-            // var maxFiles = 2;
-            // if (files.length > maxFiles) {
-            //     alert('Você só pode selecionar até ' + maxFiles + ' arquivos.');
-            //     this.value = ''; // Limpar a seleção atual dos arquivos
-            // }
-        });
-       
-       
+        const numeroCorreto = Math.floor(Math.random() * 10) + 1;
+        let tentativasRestantes = 3;
+
+        function adivinhar() {
+            const chute = parseInt(document.getElementById('chute').value);
+            const resultado = document.getElementById('resultado');
+
+            if (isNaN(chute) || chute < 1 || chute > 10) {
+                resultado.textContent = 'Por favor, insira um número válido entre 1 e 10.';
+                return;
+            }
+
+            if (chute === numeroCorreto) {
+                resultado.textContent = `Parabéns! Você acertou! O número era ${numeroCorreto}.`;
+                return;
+            } else {
+                tentativasRestantes--;
+                if (tentativasRestantes > 0) {
+                    if (chute < numeroCorreto) {
+                        resultado.textContent = `Mais pra cima! Você tem ${tentativasRestantes} tentativa(s) restante(s).`;
+                    } else {
+                        resultado.textContent = `Mais pra baixo! Você tem ${tentativasRestantes} tentativa(s) restante(s).`;
+                    }
+                } else {
+                    resultado.textContent = `Fim de jogo! O número correto era ${numeroCorreto}.`;
+                }
+            }
+        }
     </script>
 </body>
- 
 </html>
